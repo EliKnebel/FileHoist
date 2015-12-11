@@ -8,8 +8,24 @@
   },
   "author": "Eli Knebel",
   "license": "MIT",
-  "dependencies": {
+  "peerDependencies": {
     "react": "^0.14.2",
     "react-dom": "^0.14.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EliKnebel/FileHoist.git"
+  },
+  "keywords": [
+    "file",
+    "hoist",
+    "upload",
+    "uploader",
+    "transfer",
+    "xmlhttprequest"
+  ],
+  "bugs": {
+    "url": "https://github.com/EliKnebel/FileHoist/issues"
+  },
+  "homepage": "https://github.com/EliKnebel/FileHoist#readme"
 }
