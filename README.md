@@ -38,8 +38,8 @@ onUploadComplete() {
 }
 ```
 
-## Notes:
+## Notes
 Currently does not support multiple file selection.
 
-## Future work:
+## Future work
 - Mulitple File selection
