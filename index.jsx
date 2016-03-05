@@ -26,7 +26,7 @@ export default class FileHoist extends React.Component {
 	}
 	
 	/** upload selected file to server */
-	upload(cb) {
+	upload(params) {
 		var fileInput = ReactDOM.findDOMNode(this.refs.uploadfile);
 		
 		if(fileInput.files.length === 0){
@@ -37,14 +37,26 @@ export default class FileHoist extends React.Component {
 		// TODO: implement logic to support multiple files
 		var file = fileInput.files[0];
 		
-		// create FormData object and append file to it
+		// create FormData object
 		var formData = new FormData();
+    
+    // append params to formData
+		for (var key in params) {
+      if (params.hasOwnProperty(key)) {
+        formData.append(key, params[key]);
+      }
+    }
+    
+    // append file to FormData
 		formData.append('file', file);
-		
+    
 		// create a new request object
 		var request = new XMLHttpRequest();
-		request.onreadystatechange = function(){
+		request.onreadystatechange = (function() {
 				if(request.readyState == 4){
+            // clear file input
+						ReactDOM.findDOMNode(this.refs.uploadfile).value = "";
+            
 						try {
 								var resp = JSON.parse(request.response);
 						} catch (e){
@@ -53,13 +65,13 @@ export default class FileHoist extends React.Component {
 										formData: 'Unknown error occurred: [' + request.responseText + ']'
 								};
 						}
-						
+            
 						// call onUploadComplete prop function
 						if (this.props.onUploadComplete) this.props.onUploadComplete(resp);
 				}
-		}.bind(this);
+		}).bind(this);
 		
-		request.upload.addEventListener('progress', function(e){
+		request.upload.addEventListener('progress', (e) => {
 				var loaded = e.loaded;
 				var total = e.total;
 				
@@ -68,7 +80,7 @@ export default class FileHoist extends React.Component {
 		}, false);
 		
 		// open the request and upload the formData
-		request.open('POST', '/api/file/upload', true);
+		request.open(this.props.uploadMethod || 'POST', this.props.uploadUrl, true);
 		request.send(formData);
 	}
 	
@@ -82,6 +94,7 @@ export default class FileHoist extends React.Component {
 FileHoist.propTypes = {
 	multiple: React.PropTypes.bool,
 	visible: React.PropTypes.bool,
+	uploadMethod: React.PropTypes.string,
 	uploadUrl: React.PropTypes.string.isRequired,
 	onFileSelection: React.PropTypes.func,
 	onProgress: React.PropTypes.func,
