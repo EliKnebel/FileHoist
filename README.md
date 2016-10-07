@@ -8,11 +8,7 @@ npm install --save filehoist
 ```
 
 ### Usage
-The following example is written in ES6 syntax, but ES5 should be very similar.
-Simply import filehoist into your component and render it.
-To open the file dialog, call the `showDialog()` function on the FileHoist component.
-To upload the chosen file, call the `upload()` function on the FileHoist component.
-The onUploadProgress callback will be called with the current progress and onUploadComplete callback will be called when the upload is complete.
+The following example is written in ES6 syntax, but ES5 should be very similar. Simply import filehoist into your component and render it. To open the file dialog, call the `showDialog()` function on the FileHoist component. To upload the chosen file, call the `upload()` function on the FileHoist component. The onUploadProgress callback will be called with the current progress and onUploadComplete callback will be called when the upload is complete.
 ```language-javascript
 import FileHoist from 'filehoist';
 
@@ -76,3 +72,6 @@ Currently does not support multiple file selection.
 - ~~Ability to send an authentication token~~
 - Mulitple File selection
 - Ability to automatically render an input field
+
+
+https://github.com/bitbldr/FileHoist
