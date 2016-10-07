@@ -77,11 +77,6 @@ Run webpack to build
 webpack
 ```
 
-or watch
-```language-bash
-webpack -watch
-```
-
 ### Notes
 Currently does not support multiple file selection.
 
