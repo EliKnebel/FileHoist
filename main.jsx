@@ -52,25 +52,8 @@ export default class FileHoist extends React.Component {
     
 		// create a new request object
 		var request = new XMLHttpRequest();
-		request.onreadystatechange = (function() {
-				if(request.readyState == 4){
-            // clear file input
-						ReactDOM.findDOMNode(this.refs.uploadfile).value = "";
-            
-						try {
-								var resp = JSON.parse(request.response);
-						} catch (e){
-								var resp = {
-										status: 'error',
-										formData: 'Unknown error occurred: [' + request.responseText + ']'
-								};
-						}
-            
-						// call onUploadComplete prop function
-						if (this.props.onUploadComplete) this.props.onUploadComplete(resp);
-				}
-		}).bind(this);
 		
+		// add upload progress listener
 		request.upload.addEventListener('progress', (e) => {
 				var loaded = e.loaded;
 				var total = e.total;
@@ -79,14 +62,39 @@ export default class FileHoist extends React.Component {
 				if (this.props.onUploadProgress) this.props.onUploadProgress(loaded, total);
 		}, false);
 		
+		// add upload complete listener
+		request.addEventListener("load", (event) => {
+			// clear file input
+			ReactDOM.findDOMNode(this.refs.uploadfile).value = "";
+			
+			try {
+				var resp = JSON.parse(request.response);
+			} catch (e){
+				var resp = {
+						status: 'error',
+						formData: 'Unknown error occurred: [' + request.responseText + ']'
+				};
+			}
+			
+			// call onUploadComplete prop function
+			if (this.props.onUploadComplete) this.props.onUploadComplete(resp);
+		});
+		
 		// open the request and upload the formData
 		request.open(this.props.uploadMethod || 'POST', this.props.uploadUrl, true);
+		
+		// if authToken is set, set it to the header
+		if (this.props.authToken) {
+			request.setRequestHeader('Authorization', 'Bearer ' + this.props.authToken);
+		}
+		
+		// send the request
 		request.send(formData);
 	}
 	
 	fileSelected() {
 		if (this.props.onFileSelection) {
-			setTimeout(this.props.onFileSelection(), 1);
+			setTimeout(this.props.onFileSelection(ReactDOM.findDOMNode(this.refs.uploadfile).files), 1);
 		}
 	}
 }
@@ -96,7 +104,8 @@ FileHoist.propTypes = {
 	visible: React.PropTypes.bool,
 	uploadMethod: React.PropTypes.string,
 	uploadUrl: React.PropTypes.string.isRequired,
+	authToken: React.PropTypes.string,
 	onFileSelection: React.PropTypes.func,
 	onProgress: React.PropTypes.func,
-	onUploadComplete: React.PropTypes.func
+	onUploadComplete: React.PropTypes.func,
 };
