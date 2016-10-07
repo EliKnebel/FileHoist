@@ -4,7 +4,7 @@ FileHoist is a simple React component for uploading files to a remote server usi
 
 ### Install
 ```
-npm install --save  filehoist
+npm install --save filehoist
 ```
 
 ### Usage
