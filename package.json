@@ -1,7 +1,7 @@
 {
   "name": "filehoist",
   "version": "1.0.0",
-  "description": "A JavaScript library for uploading files to a remote server using XMLHttpRequest",
+  "description": "A React component for uploading files to a remote server using XMLHttpRequest",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,7 +24,9 @@
     "upload",
     "uploader",
     "transfer",
-    "xmlhttprequest"
+    "xmlhttprequest",
+    "react",
+    "component"
   ],
   "bugs": {
     "url": "https://github.com/EliKnebel/FileHoist/issues"
