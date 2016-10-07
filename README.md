@@ -65,6 +65,23 @@ onUploadBtnClick() {
 }
 ```
 
+### Development
+Install node modules and webpack globally
+```
+npm install
+npm install -g webpack
+```
+
+Run webpack to build
+```language-bash
+webpack
+```
+
+or watch
+```language-bash
+webpack -watch
+```
+
 ### Notes
 Currently does not support multiple file selection.
 
