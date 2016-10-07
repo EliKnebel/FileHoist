@@ -8,7 +8,11 @@ npm install --save filehoist
 ```
 
 ### Usage
-The following example is written in ES6 syntax, but this library should work with ES5 just the same. Simply import the component into your file and render it into the DOM.
+The following example is written in ES6 syntax, but ES5 should be very similar.
+Simply import filehoist into your component and render it.
+To open the file dialog, call the `showDialog()` function on the FileHoist component.
+To upload the chosen file, call the `upload()` function on the FileHoist component.
+The onUploadProgress callback will be called with the current progress and onUploadComplete callback will be called when the upload is complete.
 ```language-javascript
 import FileHoist from 'filehoist';
 
@@ -17,26 +21,51 @@ import FileHoist from 'filehoist';
 render() {
   return (
     ...
+
       <FileHoist ref='fileHoist'
                  uploadUrl='/api/file/upload'
-                 onFileSelection={this.onUploadFiles}
+                 onFileSelection={this.onFileSelection}
                  onUploadProgress={this.onUploadProgress}
                  onUploadComplete={this.onUploadComplete} />
+
+    ...
+
+      <button onClick={this.onUploadBtnClick}>Upload File</button>
+    
     ...
   );
 }
 
-onUploadFiles() {
+/**
+ * Handle file selection
+ */
+onFileSelection() {
   // call FileHoist upload function
   this.refs.fileHoist.upload();
 }
 
+/**
+ * Handle upload progress
+ * @param {number} loaded - amount uploaded out of total
+ * @param {number} total - total amount that will be uploaded
+ */
 onUploadProgress(loaded, total) {
   // handle a progress event
 }
 
+/**
+ * Handle upload complete
+ */
 onUploadComplete() {
   // handle upload complete event
+}
+
+/**
+ * Handle upload button click
+ */
+onUploadBtnClick() {
+  // call FileHoist showDialog function
+  this.refs.filehoist.showDialog();
 }
 ```
 
