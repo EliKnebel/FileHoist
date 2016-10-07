@@ -1,19 +1,15 @@
 ## FileHoist
 
-FileHoist is a simple React component for uploading files to a remote server using XMLHttpRequest. When the `upload()` function is called on the FileHoist component, a XMLHttpRequest will be made to upload to the address specified at uploadUrl.
+FileHoist is a simple React component for uploading files to a remote server using XMLHttpRequest. When the `upload()` function on the FileHoist component is called, a XMLHttpRequest will be made to upload to the address specified at uploadUrl.
 
 ### Install
-```
+```language-bash
 npm install filehoist --save 
 ```
 
 ### Usage
-The following example is written in ES6 syntax, but ES5 should be very similar.
-Simply import filehoist into your component and render it.
-To open the file dialog, call the `showDialog()` function on the FileHoist component.
-To upload the chosen file, call the `upload()` function on the FileHoist component.
-The onUploadProgress callback will be called with the current progress and onUploadComplete callback will be called when the upload is complete.
-```
+The following example is written in ES6 syntax, but this library should work with ES5 just the same. Simply import the component into your file and render it into the DOM.
+```language-javascript
 import FileHoist from 'filehoist';
 
 ...
@@ -21,17 +17,11 @@ import FileHoist from 'filehoist';
 render() {
   return (
     ...
-
       <FileHoist ref='fileHoist'
                  uploadUrl='/api/file/upload'
                  onFileSelection={this.onUploadFiles}
                  onUploadProgress={this.onUploadProgress}
                  onUploadComplete={this.onUploadComplete} />
-
-    ...
-
-      <button onClick={this.onUploadBtnClick}>Upload File</button>
-    
     ...
   );
 }
@@ -43,17 +33,10 @@ onUploadFiles() {
 
 onUploadProgress(loaded, total) {
   // handle a progress event
-  // loaded: amount uploaded out of total
-  // total: total amount that will be uploaded
 }
 
 onUploadComplete() {
   // handle upload complete event
-}
-
-onUploadBtnClick() {
-  // call FileHoist showDialog function
-  this.refs.filehoist.showDialog();
 }
 ```
 
