@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EliKnebel/FileHoist.git"
+    "url": "git+https://github.com/bitbldr/FileHoist.git"
   },
   "keywords": [
     "file",
@@ -29,9 +29,9 @@
     "component"
   ],
   "bugs": {
-    "url": "https://github.com/EliKnebel/FileHoist/issues"
+    "url": "https://github.com/bitbldr/FileHoist/issues"
   },
-  "homepage": "https://github.com/EliKnebel/FileHoist#readme",
+  "homepage": "https://github.com/bitbldr/FileHoist#readme",
   "devDependencies": {
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
