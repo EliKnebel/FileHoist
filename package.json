@@ -1,6 +1,6 @@
 {
   "name": "filehoist",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A React component for uploading files to a remote server using XMLHttpRequest",
   "main": "dist/index.js",
   "scripts": {
