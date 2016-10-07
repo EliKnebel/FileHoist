@@ -1,3 +1,5 @@
+## FileHoist
+
 FileHoist is a simple React component for uploading files to a remote server using XMLHttpRequest. When the `upload()` function on the FileHoist component is called, a XMLHttpRequest will be made to upload to the address specified at uploadUrl.
 
 ### Install
