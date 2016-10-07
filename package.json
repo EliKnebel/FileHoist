@@ -1,6 +1,6 @@
 {
   "name": "filehoist",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "A JavaScript library for uploading files to a remote server using XMLHttpRequest",
   "main": "dist/index.js",
   "scripts": {
